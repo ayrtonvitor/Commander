@@ -1,3 +1,5 @@
+using Commander.Data;
+
 namespace Commander;
 
 public class Startup
@@ -12,6 +14,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
+        services.AddScoped<ICommanderRepo, MockCommander>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
