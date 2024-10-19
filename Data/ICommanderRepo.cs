@@ -2,7 +2,7 @@ using Commander.Models;
 
 namespace Commander.Data;
 
-public interface ICommanderRepo
+internal interface ICommanderRepo
 {
     IEnumerable<Command> GetAppCommands();
     Command GetById(int id);

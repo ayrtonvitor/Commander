@@ -6,19 +6,19 @@ namespace Commander.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CommandsController(ICommanderRepo _repository) : ControllerBase
+internal class CommandsController(ICommanderRepo repository) : ControllerBase
 {
     [HttpGet]
     public ActionResult<IEnumerable<Command>> GetAllCommands()
     {
-        var commandItems = _repository.GetAppCommands();
+        var commandItems = repository.GetAppCommands();
         return Ok(commandItems);
     }
 
     [HttpGet("{id:int}")]
     public ActionResult<Command> GetCommandById(int id)
     {
-        var commandItem = _repository.GetById(id);
+        var commandItem = repository.GetById(id);
         return Ok(commandItem);
     }
 }

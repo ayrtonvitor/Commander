@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Commander;
 
-public class Startup
+internal sealed class Startup
 {
     public Startup(IConfiguration configuration)
     {
