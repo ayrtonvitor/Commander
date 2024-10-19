@@ -8,15 +8,15 @@ internal sealed class MockCommander : ICommanderRepo
     {
         var commands = new List<Command>
         {
-            new() { Id = 0, HowTo = "Read a book", Line = "Read the words", Platform = "Chair" },
-            new() { Id = 1, HowTo = "Hi fi a croc", Line = "Don't", Platform = "Swap" },
-            new() { Id = 2, HowTo = "Hugh a gorilla", Line = "Just don't get up", Platform = "Jungle" }
+            new(0, "Read a book", "Read the words","Chair"),
+            new(1, "Hi fi a croc", "Don't", "Swap"),
+            new(2, "Hugh a gorilla", "Just don't get up", "Jungle")
         };
         return commands;
     }
 
     public Command GetById(int id)
     {
-        return new Command { Id = 0, HowTo = "Read a book", Line = "Read the words", Platform = "Chair" };
+        return new Command (0, "Read a book", "Read the words", "Chair");
     }
 }
