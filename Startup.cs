@@ -3,21 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Commander;
 
-internal sealed class Startup
+public sealed class Startup(IConfiguration configuration)
 {
-    public Startup(IConfiguration configuration)
-    {
-        Configuration = configuration;
-    }
-
-    public IConfiguration Configuration { get; }
+    private IConfiguration Configuration { get; } = configuration;
 
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
 
         services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer(GetConnectionString()));
-        services.AddScoped<ICommanderRepo, MockCommander>();
+        services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

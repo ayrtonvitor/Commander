@@ -6,7 +6,7 @@ namespace Commander.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-internal class CommandsController(ICommanderRepo repository) : ControllerBase
+public class CommandsController(ICommanderRepo repository) : ControllerBase
 {
     [HttpGet]
     public ActionResult<IEnumerable<Command>> GetAllCommands()

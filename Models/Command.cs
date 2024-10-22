@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Commander.Models;
 
-internal sealed class Command(int id, string howTo, string line, string platform)
+public sealed class Command(int id, string howTo, string line, string platform)
 {
     [Key]
     public int Id { get; set; } = id;

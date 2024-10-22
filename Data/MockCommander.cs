@@ -2,11 +2,11 @@ using Commander.Models;
 
 namespace Commander.Data;
 
-internal sealed class MockCommander : ICommanderRepo
+public sealed class MockCommander : ICommanderRepo
 {
     public IEnumerable<Command> GetAllCommands()
     {
-        var commands = new List<Command>
+        var commands = new List<Command?>
         {
             new(0, "Read a book", "Read the words","Chair"),
             new(1, "Hi fi a croc", "Don't", "Swap"),
@@ -15,7 +15,7 @@ internal sealed class MockCommander : ICommanderRepo
         return commands;
     }
 
-    public Command GetById(int id)
+    public Command? GetById(int id)
     {
         return new Command (0, "Read a book", "Read the words", "Chair");
     }

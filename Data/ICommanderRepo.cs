@@ -2,8 +2,8 @@ using Commander.Models;
 
 namespace Commander.Data;
 
-internal interface ICommanderRepo
+public interface ICommanderRepo
 {
     IEnumerable<Command> GetAllCommands();
-    Command GetById(int id);
+    Command? GetById(int id);
 }
