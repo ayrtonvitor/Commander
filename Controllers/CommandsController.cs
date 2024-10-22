@@ -11,7 +11,7 @@ internal class CommandsController(ICommanderRepo repository) : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<Command>> GetAllCommands()
     {
-        var commandItems = repository.GetAppCommands();
+        var commandItems = repository.GetAllCommands();
         return Ok(commandItems);
     }
 

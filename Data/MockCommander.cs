@@ -4,7 +4,7 @@ namespace Commander.Data;
 
 internal sealed class MockCommander : ICommanderRepo
 {
-    public IEnumerable<Command> GetAppCommands()
+    public IEnumerable<Command> GetAllCommands()
     {
         var commands = new List<Command>
         {
