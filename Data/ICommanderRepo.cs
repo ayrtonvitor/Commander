@@ -6,4 +6,6 @@ public interface ICommanderRepo
 {
     IEnumerable<Command> GetAllCommands();
     Command? GetById(int id);
+    void Create(Command cmd);
+    bool SaveChanges();
 }

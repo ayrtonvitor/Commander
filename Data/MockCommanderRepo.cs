@@ -19,4 +19,14 @@ public sealed class MockCommander : ICommanderRepo
     {
         return new Command (0, "Read a book", "Read the words", "Chair");
     }
+
+    public void Create(Command cmd)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool SaveChanges()
+    {
+        throw new NotImplementedException();
+    }
 }
