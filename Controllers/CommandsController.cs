@@ -1,7 +1,6 @@
 using Commander.Data;
 using Commander.Dtos;
 using Commander.Mappers;
-using Commander.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Commander.Controllers;
@@ -10,7 +9,7 @@ namespace Commander.Controllers;
 [ApiController]
 public class CommandsController(ICommanderRepo repository) : ControllerBase
 {
-    private readonly CommandMapper _mapper = new CommandMapper();
+    private readonly CommandMapper _mapper = new();
     [HttpGet]
     public ActionResult<IEnumerable<CommandReadResponse>> GetAllCommands()
     {
@@ -27,5 +26,14 @@ public class CommandsController(ICommanderRepo repository) : ControllerBase
             return NotFound();
         }
         return Ok(_mapper.CommandToCommandReadResponse(commandItem));
+    }
+
+    [HttpPost]
+    public ActionResult<CommandReadResponse> CreateCommand(CommandCreateRequest commandCreateRequest)
+    {
+        var commandModel = _mapper.CommandCreateRequestToCommand(commandCreateRequest);
+        repository.Create(commandModel);
+        repository.SaveChanges();
+        return Ok(_mapper.CommandToCommandReadResponse(commandModel));
     }
 }

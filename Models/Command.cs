@@ -4,6 +4,8 @@ namespace Commander.Models;
 
 public sealed class Command(int id, string howTo, string line, string platform)
 {
+    public Command(string howTo, string line, string platform) : this(0, howTo, line, platform) { }
+
     [Key]
     public int Id { get; set; } = id;
 
