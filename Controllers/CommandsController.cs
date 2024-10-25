@@ -17,7 +17,7 @@ public class CommandsController(ICommanderRepo repository) : ControllerBase
         return Ok(_mapper.CommandToCommandReadResponse(commandItems));
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("{id:int}", Name = "GetCommandById")]
     public ActionResult<CommandReadResponse> GetCommandById(int id)
     {
         var commandItem = repository.GetById(id);
@@ -34,6 +34,9 @@ public class CommandsController(ICommanderRepo repository) : ControllerBase
         var commandModel = _mapper.CommandCreateRequestToCommand(commandCreateRequest);
         repository.Create(commandModel);
         repository.SaveChanges();
-        return Ok(_mapper.CommandToCommandReadResponse(commandModel));
+
+        var commandReadResponse = _mapper.CommandToCommandReadResponse(commandModel);
+
+        return CreatedAtRoute(nameof(GetCommandById), new { commandReadResponse.Id }, commandReadResponse);
     }
 }
