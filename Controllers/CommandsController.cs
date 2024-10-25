@@ -1,4 +1,6 @@
 using Commander.Data;
+using Commander.Dtos;
+using Commander.Mappers;
 using Commander.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,17 +10,22 @@ namespace Commander.Controllers;
 [ApiController]
 public class CommandsController(ICommanderRepo repository) : ControllerBase
 {
+    private readonly CommandMapper _mapper = new CommandMapper();
     [HttpGet]
-    public ActionResult<IEnumerable<Command>> GetAllCommands()
+    public ActionResult<IEnumerable<CommandReadResponse>> GetAllCommands()
     {
         var commandItems = repository.GetAllCommands();
-        return Ok(commandItems);
+        return Ok(_mapper.CommandToCommandReadResponse(commandItems));
     }
 
     [HttpGet("{id:int}")]
-    public ActionResult<Command> GetCommandById(int id)
+    public ActionResult<CommandReadResponse> GetCommandById(int id)
     {
         var commandItem = repository.GetById(id);
-        return Ok(commandItem);
+        if (commandItem == null)
+        {
+            return NotFound();
+        }
+        return Ok(_mapper.CommandToCommandReadResponse(commandItem));
     }
 }
